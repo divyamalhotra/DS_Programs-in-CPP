@@ -1,0 +1,88 @@
+#include<iostream.h>
+#include<conio.h>
+struct node
+{
+ int data;
+ node *next;
+}*top=NULL;
+void push(int value)
+{
+ node *temp;
+ temp=new node;
+ temp->data=value;
+ temp->next=top;
+ top=temp;
+}
+int pop()
+{
+ int value;
+ node *temp;
+ if(top==NULL)
+ {
+  cout<<"\nStack is empty!!!";
+  return;
+ }
+ else
+ {
+  temp=top;
+  value=temp->data;
+  top=top->next;
+  delete temp;
+  return value;
+ }
+}
+void display()
+{
+ if(top==NULL)
+ {
+  cout<<"\nStack is empty!!!";
+ }
+ else
+ {
+  node *temp;
+  temp=top;
+  while(temp!=NULL)
+  {
+   cout<<temp->data<<endl;
+   temp=temp->next;
+  }
+ }
+}
+void main()
+{
+ clrscr();
+ char c;
+ do
+ {
+  clrscr();
+  int ch,value;
+  cout<<"\nChoose: ";
+  cout<<"\n1. Insert an element in the stack";
+  cout<<"\n2. Delete an element from the stack";
+  cout<<"\n3. Display the stack";
+  cin>>ch;
+  if(ch==1)
+  {
+   cout<<"Enter value: ";
+   cin>>value;
+   push(value);
+   cout<<"\nUpdated stack: \n";
+   display();
+  }
+  else if(ch==2)
+  {
+   cout<<"Deleted element: "<<pop()<<endl;
+   cout<<"\nUpdated stack: \n";
+   display();
+  }
+  else if(ch==3)
+  display();
+  else
+  cout<<"\nWrong choice";
+  cout<<"\nDo you want to enter more? y or n-";
+  cin>>c;
+ }while(c=='y'||c=='Y');
+ getch();
+}
+
+
